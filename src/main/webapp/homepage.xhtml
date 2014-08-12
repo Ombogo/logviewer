@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+  >
+   <h:head>
+      <title>Voting</title>		     
+   </h:head>
+   <h:body> 
+       <h2 > Voting</h2>
+       <h:panelGrid id="textbox">
+ <h:form>
+            <table> 
+            <td>
+                 <tr> </tr>
+                <th> <h:outputLabel value="User Name"/></th>
+                <th><h:inputText value="#{UserDetails.name}" id="inputName"/></th>
+                <tr> </tr>
+                <th><h:outputLabel value="Password"/></th>
+                <th> <h:inputSecret value="#{UserDetails.password}" /></th>
+                <tr></tr>
+                <th> <h:commandButton   value="Log in"  action="page1.jsp"/></th>
+                     
+                           
+            </td></table>
+ </h:form>
+       </h:panelGrid>
+   </h:body>
+</html>
