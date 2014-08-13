@@ -21,10 +21,12 @@
 <title>LOTTERY</title>   
  
 
- <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
-  <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
-  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/javascript"href="//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js">
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.0/css/jquery.dataTables.css">
 <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://a.unbounce.com/s/javascripts/jquery/jquery-ui.1.8.16.min.js"></script>
@@ -34,6 +36,13 @@
 
   
 $(document).ready(function() {
+    $( "#datepicker" ).datepicker({
+         dateFormat: 'dd mm yy',
+                        timeFormat: 'hh mm',
+                        showMinute: false,
+                        showSecond: false,
+                        separator: ' ',
+    });
     $("#example").dataTable( {
         "bProcessing": false,
         "bServerSide": false,
@@ -47,10 +56,20 @@ $(document).ready(function() {
             { "mData": "valid" }
            
         ],
-         "oTableTools": {
-    "sSwfPath": "/js/swf/copy_csv_xls_pdf.swf"
-    },
-          "bJQueryUI": false,
+  
+        "sDom": 'T<"clear">lfrtip',
+        "oTableTools": {
+            "aButtons": [
+                "copy",
+                "print",
+                {
+                    "sExtends":    "collection",
+                    "sButtonText": "Save",
+                    "aButtons":    [ "csv", "xls", "pdf" ]
+                }
+            ]
+        },
+        "bJQueryUI": false,
             //"sPaginationType": "customListbox",
 //            "sPaginationType": "buttons_input",
             "iDisplayLength": 10,
@@ -90,6 +109,7 @@ $(document).ready(function() {
     <h2 >LOTTERY<br><br></h2>
     
 <table width="70%" style="border: 3px;background: rgb(243, 244, 248);"><tr><td>
+            <button onclick="javascript:window.location=" style="margin-left: 600px;"> CSV </button>
             <p> Start Date: <input type="text" id="datepicker" ></p> 
 <!--       <p> End Date: <input type="text" id="stopTime" ></p> -->
     <table id="example" class="display" cellspacing="0" width="100%">
