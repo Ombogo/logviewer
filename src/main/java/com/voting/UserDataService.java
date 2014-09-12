@@ -3,12 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.voting;
 
-/**
- *
- * @author velma
- */
+package com.voting;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,38 +13,33 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+@ManagedBean(name="UserDataService", eager = true)
+public class UserDataService implements Serializable {
 
-public class UserDataService implements Serializable{
- private static final long serialVersionUID = 1L;
-    public  List<Voting> getVotings() {
-       
+    private static final long serialVersionUID = 1L;
+
+    public List<Voting> getVotings() {
+
         ResultSet rs = null;
         PreparedStatement pst = null;
         Connection con = getConnection();
 
-        String stm = "SELECT msisdn, short_code, text, created FROM inboxes";
+        String stm = "SELECT msisdn, short_code, created, text  FROM inboxes";
         List<Voting> records = new ArrayList<Voting>();
         try {
             pst = con.prepareStatement(stm);
             pst.execute();
             rs = pst.getResultSet();
             Voting voting = new Voting();
-            String valid;
+          
             while (rs.next()) {
                 voting.setMsisdn(rs.getLong("msisdn"));
                 voting.setText(rs.getString("text"));
-                
-//               valid = rs.getString("text");
-//               
-//               if(valid.equalsIgnoreCase("CHURCH")){
-//               voting.setValid("YES");
-//               }else{
-//                   voting.setValid("NO");
-//               }
-                
+               
                 voting.setShort_code(rs.getInt("short_code"));
                 voting.setCreated(rs.getTime("created"));
-               
+//                voting2.setValid(rs.getString("valid"));
                 records.add(voting);
             }
         } catch (SQLException e) {
@@ -59,7 +50,7 @@ public class UserDataService implements Serializable{
     }
 
     public Connection getConnection() {
-       Connection con =null;
+        Connection con = null;
 
         String url = "jdbc:mysql://192.168.1.172/roamtech_dev";
         String user = "dev";
@@ -86,4 +77,5 @@ public class UserDataService implements Serializable{
         }
         return con;
     }
+
 }

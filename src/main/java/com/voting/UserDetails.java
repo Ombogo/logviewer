@@ -6,25 +6,20 @@
 
 package com.voting;
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
+import javax.naming.NamingException;
 @ManagedBean(name="UserDetails", eager = true)
 @SessionScoped
 public class UserDetails implements Serializable{
 
  private static final long serialVersionUID = 1L;
 
-   private String name;
+  private String name;
    private String password;
-
+ 
    public String getName() {
       return name;
    }
@@ -36,16 +31,28 @@ public class UserDetails implements Serializable{
    }
    public void setPassword(String password) {
       this.password = password;
-   }	
-   public String login(){
-      return "result";
-   }}
+   }
+ public String login() throws NamingException, NoSuchAlgorithmException, UnsupportedEncodingException{
+if(Ldap.validateLogin(name, password)==false){
+    //System.out.println("Not authenticated");
+return "error?faces-redirect=true";
 
-
-   // JDBC driver name and database URL
+}
+ // System.out.println("Not authenticated");
+     return "page1?faces-redirect=true";
+ }
    
- 
+      
+      
 
+      
+      
+   
+
+}
+
+//   
+//  
 
 
     

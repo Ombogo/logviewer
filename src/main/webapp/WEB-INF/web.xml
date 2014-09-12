@@ -4,10 +4,11 @@
    xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
    http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+   
    id="WebApp_ID" version="2.5">
     <welcome-file-list>
 <!--      <welcome-file>homepage.xhtml</welcome-file>-->
-       <welcome-file>page1.jsp</welcome-file>
+       <welcome-file>homepage.xhtml</welcome-file>
    </welcome-file-list>
    <display-name>Archetype Created Web Application</display-name>
     <context-param>
@@ -40,6 +41,34 @@
       <servlet-name>Faces Servlet</servlet-name>
       <url-pattern>*.xhtml</url-pattern>
    </servlet-mapping>
-  
    
+<!--<security-constraint>
+   <display-name>Security Constraint</display-name>
+   <web-resource-collection>
+      <web-resource-name>Protected Area</web-resource-name>
+       Define the context-relative URL(s) to be protected 
+      <url-pattern>/*</url-pattern>
+       If you list http methods, only those methods are protected 
+   </web-resource-collection>
+   <auth-constraint>
+       Anyone with one of the listed roles may access this area 
+      <role-name>source</role-name>
+   </auth-constraint>
+</security-constraint>-->
+
+<!-- Default login configuration uses form-based authentication -->
+<login-config>
+   <auth-method>FORM</auth-method>
+   <realm-name>Form-Based Authentication Area</realm-name>
+   <form-login-config>
+     <form-login-page>/homepage.xhtml</form-login-page>
+     <form-error-page>/error.xhtml</form-error-page>
+   </form-login-config>
+</login-config><!--
+
+ Security roles referenced by this web application 
+<security-role>
+   <role-name>source</role-name>
+</security-role>-->
+ 
 </web-app>

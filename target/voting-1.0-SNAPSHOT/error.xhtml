@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+   xmlns:h="http://java.sun.com/jsf/html"
+       
+   xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+   <h:head>
+      <title>Voting</title>		     
+   </h:head>
+   <h:body> 
+       <div style="background-color: crimson; font-size: 15pt;"> There is an error with your login credentials please ensure they are correct</div>
+       <h2 > Voting</h2>
+   
+
+
+       
+               
+
+       <h:form  >
+         
+           <h:outputLabel  value="User Name"/>
+               <h:inputText value="#{UserDetails.name}" id="inputName" required=""/>
+               <br> </br>
+               <h:outputLabel value="Password" />
+                <h:inputSecret value="#{UserDetails.password}" />
+                <br></br>
+                <h:commandButton   value="Log in" action="#{UserDetails.login()}"    
+/>
+                     
+           
+ </h:form>
+       
+   </h:body>
+</html>

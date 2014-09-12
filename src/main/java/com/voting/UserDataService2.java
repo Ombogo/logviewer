@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.voting;
 
 /**
@@ -15,15 +14,10 @@ package com.voting;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 /**
  *
  * @author velma
  */
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -32,34 +26,37 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
+import javax.faces.bean.ManagedBean;
+import static javax.swing.UIManager.getString;
+@ManagedBean(name="UserDataService2", eager=true)
+public class UserDataService2 implements Serializable {
 
-public class UserDataService2 implements Serializable{
- private static final long serialVersionUID = 1L;
-    public  List<Voting2> getVotings2() {
-       
+    private static final long serialVersionUID = 1L;
+
+    public List<Voting2> getVotings2() {
+
         ResultSet rs = null;
         PreparedStatement pst = null;
         Connection con = getConnection();
 
-        String stm = "SELECT msisdn, short_code, created, text  FROM inboxes";
+        String stm = "SELECT msisdn, short_code, created, text  FROM inboxes ORDER BY RAND ()";
         List<Voting2> records2 = new ArrayList<Voting2>();
         try {
             pst = con.prepareStatement(stm);
             pst.execute();
             rs = pst.getResultSet();
             Voting2 voting2 = new Voting2();
-     String valid;
+            String valid;
             while (rs.next()) {
                 voting2.setMsisdn(rs.getLong("msisdn"));
                 voting2.setText(rs.getString("text"));
-                valid=rs.getString("text");
-              
-               if(valid.equalsIgnoreCase("CHURCH")){
-               voting2.setValid("YES");
-               }else{
-                   voting2.setValid("NO");
-               }
+                valid = rs.getString("text");
+           
+                if (valid.equals("CHURCH")) {
+                    voting2.setValid("YES");
+                } else {
+                    voting2.setValid("NO");
+                }
                 voting2.setShort_code(rs.getInt("short_code"));
                 voting2.setCreated(rs.getTime("created"));
 //                voting2.setValid(rs.getString("valid"));
@@ -73,7 +70,7 @@ public class UserDataService2 implements Serializable{
     }
 
     public Connection getConnection() {
-       Connection con =null;
+        Connection con = null;
 
         String url = "jdbc:mysql://192.168.1.172/roamtech_dev";
         String user = "dev";
@@ -100,28 +97,5 @@ public class UserDataService2 implements Serializable{
         }
         return con;
     }
-        public static void main(String[] args) {
- 
-	Properties prop = new Properties();
-	InputStream input = null;
- 
-	try {
- 
-		input = new FileInputStream("lottery.properties");
- 
-		// load a properties file
-		prop.load(input);
- 
-		// get the property value and print it out
-		System.out.println(prop.getProperty("keyword"));
-}catch (IOException ex) {
-		ex.printStackTrace();
-	} finally {
-		if (input != null) {
-			try {
-				input.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-        }}}
+
+}

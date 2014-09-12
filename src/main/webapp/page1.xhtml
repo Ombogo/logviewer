@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+       
+   xmlns:ui="http://java.sun.com/jsf/facelets">
+<!--    <ui:composition xmlns="http://www.w3.org/1999/xhtml"></ui:composition>-->
+<h:head>
+<title>Voting</title>   
+
+<!--//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css.-->
+<link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+<!--<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.0/css/jquery.dataTables.css"/>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+<!--<script type="text/javascript" src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.tableTools.js"></script>-->
+<script type="text/javascript">
+$(document).ready(function() {
+     
+    $("#example").dataTable( {
+        "bProcessing": false,
+        "bServerSide": false,
+        "sort": "position",
+        "sAjaxSource": "./UserDataServlet",
+        "aoColumns": [
+            { "mData": "msisdn" },
+            { "mData": "short_code" },
+            { "mData": "text" },
+            { "mData": "created" }
+           
+        ]
+        
+    } );
+
+} );
+
+</script>
+</h:head>
+    <h:body>
+        
+     <ui:include src="menu.html"/>
+<h:form >
+    
+    <h2 >VOTING</h2>
+<table width="70%" style="border: 3px;background: rgb(243, 244, 248);background-color: #205081;"><tr><td>
+    <table id="example" class="display" cellspacing="0" width="100%">
+        
+        <thead>
+            <tr>
+                <th>MSISDN</th>
+                <th>SHORTCODE</th>
+                <th>KEYWORD</th>
+                <th>CREATED</th>
+               
+            </tr>
+        </thead>       
+    </table>
+    </td></tr></table>
+</h:form>
+</h:body>
+</html>

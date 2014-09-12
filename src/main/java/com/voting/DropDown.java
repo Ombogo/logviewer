@@ -6,10 +6,14 @@
 
 package com.voting;
 
+import javax.faces.bean.ManagedBean;
+
 /**
  *
  * @author velma
  */
+
+@ManagedBean(name="DropDown")
 public class DropDown {
     
 private int short_code;

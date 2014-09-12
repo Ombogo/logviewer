@@ -7,8 +7,6 @@
 package com.voting;
 
 
-
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.IOException;
@@ -43,8 +41,12 @@ public class UserDataServlet2 extends HttpServlet {
 
                Gson gson2 = new GsonBuilder().setPrettyPrinting().create();
              String json2 = gson2.toJson(dataTableObject2);
-              response.getWriter().print(json2);
-    }
+          
+             response.getWriter().print(json2);
+          
+		
+	}
+    
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
